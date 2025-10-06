@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RonalDev - Portfolio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+
+    <!-- Meta -->
+    <meta
+      name="description"
+      content="RonalDev - Portfolio de Ronald Rivadeneyra, Desarrollador Full Stack y especialista en soporte técnico en Lima, Perú."
+    />
+    <meta
+      name="keywords"
+      content="Ronald Rivadeneyra, RonalDev, desarrollador web, soporte técnico, landing page, Lima, Perú"
+    />
+    <meta name="author" content="Ronald Rivadeneyra" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="RonalDev - Ronald Rivadeneyra" />
+    <meta
+      property="og:description"
+      content="Desarrollo web y soluciones técnicas que funcionan"
+    />
+    <meta property="og:image" content="images/ronald-photo.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://tudominio.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Partículas de fondo -->
+    <div class="particles"></div>
+
+    <!-- WhatsApp Flotante -->
+    <a
+      href="https://wa.me/51960334494?text=Hola%20RonalDev%2C%20me%20interesa%20tus%20servicios"
+      target="_blank"
+      class="whatsapp-float"
+      title="Contactar por WhatsApp"
+    >
+      💬
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">RonalDev</div>
+        <div class="hamburger">☰</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <div class="hero-photo">
+          <img
+            src="images/foto_perfil.jpg"
+            alt="Ronald Rivadeneyra - Desarrollador Full Stack"
+          />
+        </div>
+        <h1>Ronald Rivadeneyra</h1>
+        <p>Desarrollo web y soluciones técnicas que funcionan</p>
+        <a href="#proyectos" class="cta-button">Ver Mi Trabajo</a>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="section">
+      <h2 class="section-title scroll-reveal">Servicios</h2>
+      <div class="services-grid">
+        <div class="service-card scroll-reveal">
+          <div class="service-icon">💻</div>
+          <h3>Desarrollo Web</h3>
+          <p>Sitios web completos desde cero con tecnologías modernas</p>
+          <ul style="text-align: left; margin-top: 20px">
+            <li>Sitios web corporativos</li>
+            <li>Tiendas online básicas</li>
+            <li>Sistemas de gestión internos</li>
+          </ul>
+          <div style="text-align: center; margin-top: 30px">
+            <a href="#contacto" class="cta-button small">Cotizar Proyecto</a>
+          </div>
+        </div>
+        <div class="service-card scroll-reveal">
+          <div class="service-icon">🔧</div>
+          <h3>Soporte Técnico</h3>
+          <p>Mantenimiento y reparación de equipos informáticos</p>
+          <ul style="text-align: left; margin-top: 20px">
+            <li>Mantenimiento preventivo PC/Laptop</li>
+            <li>Instalación de software empresarial</li>
+            <li>Recuperación de datos</li>
+          </ul>
+          <div style="text-align: center; margin-top: 30px">
+            <a href="#contacto" class="cta-button small">Solicitar Servicio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="section">
+      <h2 class="section-title scroll-reveal">Proyectos Destacados</h2>
+      <div class="projects-grid">
+        <!-- Proyecto 1: Delivery -->
+        <div class="project-card scroll-reveal">
+          <div class="project-image">
+            <img src="images/proyecto-delivery.jpg" alt="Sistema de Delivery" />
+            <a
+              href="https://ronaldev-code.github.io/Delivery_TiempoReal_V2/"
+              target="_blank"
+              class="project-link"
+              >Ver Proyecto</a
+            >
+          </div>
+          <div class="project-info">
+            <h3>Sistema de Delivery en Tiempo Real</h3>
+            <p>
+              Gestión automática de pedidos delivery sin errores manuales para
+              cevichería.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Base de datos</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <p>
+              <strong>Resultado:</strong> 0 pedidos perdidos, control total
+              desde un panel.
+            </p>
+          </div>
+        </div>
+
+        <!-- Proyecto 2: Cabinas -->
+        <div class="project-card scroll-reveal">
+          <div class="project-image">
+            <img
+              src="images/FastNet.jpg"
+              alt="Landing Page Cabinas de Internet"
+            />
+            <a
+              href="https://ronaldev-code.github.io/FastNet_Website/"
+              target="_blank"
+              class="project-link"
+              >Ver Proyecto</a
+            >
+          </div>
+          <div class="project-info">
+            <h3>Landing Page Cabinas de Internet</h3>
+            <p>
+              Página moderna y responsiva para un negocio de cabinas de
+              internet, mostrando servicios y horarios de atención.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <p>
+              <strong>Resultado:</strong> Mayor visibilidad en línea y captación
+              de clientes locales.
+            </p>
+          </div>
+        </div>
+
+        <!-- Proyecto 3: Bodega -->
+        <div class="project-card scroll-reveal">
+          <div class="project-image">
+            <img src="images/Bodega.jpg" alt="Landing Page Bodega" />
+            <a
+              href="https://ronaldev-code.github.io/Bodega_Roberto-s/"
+              target="_blank"
+              class="project-link"
+              >Ver Proyecto</a
+            >
+          </div>
+          <div class="project-info">
+            <h3>Landing Page Bodega</h3>
+            <p>
+              Sitio web simple y funcional para una bodega, con catálogo básico
+              de productos y contacto rápido.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <p>
+              <strong>Resultado:</strong> Negocio local con presencia digital y
+              mayor alcance de clientes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proceso -->
+    <section id="proceso" class="section">
+      <h2 class="section-title scroll-reveal">Proceso RonalDev</h2>
+      <div class="process-steps">
+        <div class="step scroll-reveal">
+          <div class="step-number">1</div>
+          <h3>Reunión Inicial</h3>
+          <p>Consulta gratuita para definir alcance y requisitos</p>
+        </div>
+        <div class="step scroll-reveal">
+          <div class="step-number">2</div>
+          <h3>Propuesta</h3>
+          <p>Presupuesto detallado con plazos claros</p>
+        </div>
+        <div class="step scroll-reveal">
+          <div class="step-number">3</div>
+          <h3>Desarrollo</h3>
+          <p>Trabajo iterativo con revisiones programadas</p>
+        </div>
+        <div class="step scroll-reveal">
+          <div class="step-number">4</div>
+          <h3>Entrega</h3>
+          <p>Producto funcional + tutorial de uso</p>
+        </div>
+        <div class="step scroll-reveal">
+          <div class="step-number">5</div>
+          <h3>Documentación</h3>
+          <p>Manual completo para mantenimiento futuro</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section">
+      <h2 class="section-title scroll-reveal">Contáctame</h2>
+
+      <!-- ✅ Formulario configurado para Formspree -->
+      <form
+        class="contact-form scroll-reveal"
+        action="https://formspree.io/f/xyznpaqq"
+        method="POST"
+      >
+        <div class="form-group">
+          <input type="text" name="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Tu email" required />
+        </div>
+        <div class="form-group">
+          <select name="servicio" required>
+            <option value="">Selecciona un servicio</option>
+            <option value="Desarrollo Web">Desarrollo Web</option>
+            <option value="Soporte Tecnico">Soporte Técnico</option>
+            <option value="Ambos Servicios">Ambos servicios</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea
+            name="mensaje"
+            rows="5"
+            placeholder="Describe tu proyecto o problema"
+            required
+          ></textarea>
+        </div>
+
+        <div style="text-align: center">
+          <button type="submit" class="cta-button">Enviar Mensaje</button>
+        </div>
+
+        <!-- ✅ Mensaje dinámico de confirmación o error -->
+        <p
+          class="form-message"
+          style="
+            text-align: center;
+            color: #00ffff;
+            font-size: 0.95rem;
+            margin-top: 10px;
+          "
+        ></p>
+      </form>
+
+      <!-- 📧 Información de contacto debajo -->
+      <div style="text-align: center; margin-top: 25px">
+        <p style="color: #fff; font-size: 0.95rem">
+          📧 Email:
+          <a
+            href="mailto:ronaldcode01@gmail.com"
+            style="color: #00ffff; text-decoration: none"
+          >
+            ronaldcode01@gmail.com
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="logo" style="margin-bottom: 30px">RonalDev</div>
+        <div style="margin-bottom: 40px">
+          <h3 style="color: #00ffff; margin-bottom: 20px">
+            Sígueme en mis redes
+          </h3>
+          <div class="social-links">
+            <a
+              href="https://www.linkedin.com/in/ronald-rivadeneyra-velasquez-633193383/"
+              target="_blank"
+              class="social-link linkedin"
+              title="LinkedIn"
+              >💼</a
+            >
+            <a
+              href="https://www.tiktok.com/@ronaldev10"
+              target="_blank"
+              class="social-link tiktok"
+              title="TikTok"
+              >🎵</a
+            >
+            <a
+              href="https://www.facebook.com/devsoftware993"
+              target="_blank"
+              class="social-link facebook"
+              title="Facebook"
+              >📘</a
+            >
+            <a
+              href="https://www.instagram.com/ronaldev10/"
+              target="_blank"
+              class="social-link instagram"
+              title="Instagram"
+              >📷</a
+            >
+          </div>
+        </div>
+        <div class="footer-info">
+          <p>&copy; 2025 RonalDev | Todos los derechos reservados.</p>
+          <p style="margin-top: 10px; font-size: 0.9rem">
+            Desarrollador Full Stack & Especialista en Soporte Técnico - Lima,
+            Perú
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS externo -->
+    <script src="script.js"></script>
+  </body>
+</html>
