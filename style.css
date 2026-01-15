@@ -19,6 +19,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+  pointer-events: none;
 }
 
 .particle {
@@ -94,6 +95,22 @@ body {
   transform: translateY(-2px);
 }
 
+.nav-links .store-link {
+  background: linear-gradient(45deg, #48bb78, #38a169);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.nav-links .store-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(72, 187, 120, 0.4);
+  border-color: #48bb78;
+}
+
 .hamburger {
   display: none;
   font-size: 1.5rem;
@@ -135,6 +152,7 @@ body {
   }
 }
 
+/* ✅ FOTO DE PERFIL - OPTIMIZADA PARA 800x800 */
 .hero-photo {
   width: 200px;
   height: 200px;
@@ -144,12 +162,19 @@ body {
   border: 3px solid #00ffff;
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
   animation: photoGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 255, 255, 0.1);
 }
 
 .hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; /* Ocupa todo el ancho del círculo */
+  height: 100%; /* Ocupa toda la altura del círculo */
+  object-fit: cover; /* Cubre todo el espacio */
+  object-position: center center; /* Centrado perfecto */
+  display: block;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 @keyframes photoGlow {
@@ -200,6 +225,7 @@ body {
   overflow: hidden;
   border: none;
   cursor: pointer;
+  z-index: 1;
 }
 
 .cta-button::before {
@@ -309,6 +335,8 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 40px;
   padding: 0 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .project-card {
@@ -318,6 +346,7 @@ body {
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 255, 255, 0.2);
   position: relative;
+  z-index: 2;
 }
 
 .project-card::after {
@@ -345,23 +374,94 @@ body {
   box-shadow: 0 20px 50px rgba(0, 255, 255, 0.3);
 }
 
-/* Nueva sección de imagen + botón */
-.project-image {
+/* Videos */
+.project-video {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
+  background: #000;
+  border-radius: 15px 15px 0 0;
 }
 
-.project-image img {
+.project-video video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+  will-change: transform;
 }
 
-.project-card:hover .project-image img {
+.project-card:hover .project-video video,
+.project-card:hover video,
+.project-video:hover video {
   transform: scale(1.05);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-card:hover .video-overlay {
+  opacity: 1;
+}
+
+.play-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #000;
+  font-weight: bold;
+  animation: playPulse 2s infinite;
+}
+
+@keyframes playPulse {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.1); 
+  }
+}
+
+.new-badge {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-left: 10px;
+  animation: pulseBadge 2s infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
 }
 
 .project-link {
@@ -377,7 +477,7 @@ body {
   font-weight: bold;
   opacity: 0;
   transition: opacity 0.3s, transform 0.3s;
-  z-index: 2;
+  z-index: 3;
 }
 
 .project-card:hover .project-link {
@@ -486,6 +586,21 @@ body {
   color: #fff;
 }
 
+.form-message {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.95;
+}
+
+.form-message.success {
+  color: #b0ff9c;
+}
+
+.form-message.error {
+  color: #ff9c9c;
+}
+
 /* WhatsApp flotante */
 .whatsapp-float {
   position: fixed;
@@ -586,12 +701,15 @@ footer {
 .social-link.linkedin:hover {
   box-shadow: 0 10px 25px rgba(0, 119, 181, 0.5);
 }
+
 .social-link.tiktok:hover {
   box-shadow: 0 10px 25px rgba(255, 0, 80, 0.5);
 }
+
 .social-link.facebook:hover {
   box-shadow: 0 10px 25px rgba(24, 119, 242, 0.5);
 }
+
 .social-link.instagram:hover {
   box-shadow: 0 10px 25px rgba(228, 64, 95, 0.5);
 }
@@ -603,7 +721,29 @@ footer {
   opacity: 0.7;
 }
 
-/* Responsive */
+/* Efectos de scroll */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero .cta-button {
+  margin-bottom: 40px;
+}
+
+#servicios {
+  margin-top: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -627,14 +767,189 @@ footer {
     display: flex;
   }
 
+  /* Hero responsive */
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 120px 20px 60px;
+  }
+
   .hero h1 {
     font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 15px;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+  .hero-photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  /* Secciones responsive */
+  .section {
+    padding: 60px 0;
   }
 
   .section-title {
     font-size: 2rem;
+    margin-bottom: 40px;
+    padding: 0 20px;
   }
 
+  /* Servicios responsive */
+  .services-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+    gap: 30px;
+  }
+
+  .service-card {
+    padding: 30px 20px;
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .service-card ul {
+    padding-left: 20px;
+  }
+
+  .service-card ul li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  /* Proyectos responsive */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+    gap: 30px;
+  }
+
+  .project-video {
+    height: 200px;
+  }
+
+  .project-card:hover .project-video video,
+  .project-card:hover video {
+    transform: scale(1.02);
+  }
+
+  .play-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .project-info {
+    padding: 20px;
+  }
+
+  .project-info h3 {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  .project-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .new-badge {
+    display: block;
+    margin: 10px 0 0 0;
+    width: fit-content;
+  }
+
+  .project-tech {
+    gap: 8px;
+  }
+
+  .tech-tag {
+    font-size: 0.85rem;
+    padding: 4px 12px;
+  }
+
+  /* Proceso responsive */
+  .process-steps {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+    gap: 30px;
+  }
+
+  .step h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 0.95rem;
+  }
+
+  /* Contacto responsive */
+  .contact-form {
+    padding: 0 15px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+
+  .cta-button.small {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+
+  /* Footer responsive */
+  footer {
+    padding: 40px 0;
+  }
+
+  .footer-content .logo {
+    font-size: 2rem;
+    margin-bottom: 20px !important;
+  }
+
+  .social-links {
+    gap: 15px;
+    margin-bottom: 30px !important;
+  }
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+
+  .footer-info {
+    padding-top: 20px;
+    margin-top: 30px;
+  }
+
+  .footer-info p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* WhatsApp flotante responsive */
   .whatsapp-float {
     bottom: 20px;
     right: 20px;
@@ -643,96 +958,119 @@ footer {
     font-size: 1.5rem;
   }
 
-  .hero-photo {
-    width: 150px;
-    height: 150px;
+  /* Ajustes de espaciado */
+  #servicios {
+    margin-top: 50px;
   }
 
-  .services-grid,
-  .projects-grid {
-    grid-template-columns: 1fr;
-    padding: 0 15px;
+  /* Mejora de legibilidad en móvil */
+  body {
+    font-size: 16px;
   }
 
-  .process-steps {
-    grid-template-columns: 1fr;
-    padding: 0 15px;
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+  }
+}
+
+/* Responsive para tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
   }
 
-  .social-links {
-    gap: 15px;
-  }
-
-  .social-link {
-    width: 45px;
-    height: 45px;
+  .hero p {
     font-size: 1.3rem;
   }
-}
 
-/* Efectos de scroll */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.6s ease;
-}
+  .hero-photo {
+    width: 180px;
+    height: 180px;
+  }
 
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
+  .projects-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 
-/* --- Fix sobreposición Hero → Servicios --- */
-.hero .cta-button {
-  position: relative; /* el botón ya no sale del Hero */
-  margin-bottom: 40px; /* espacio debajo del botón */
-  z-index: 1;
-}
-
-#servicios {
-  margin-top: 80px; /* asegura que inicie más abajo */
-  position: relative;
-  z-index: 2;
-}
-
-/* Ajuste en móviles */
-@media (max-width: 768px) {
-  #servicios {
-    margin-top: 50px; /* menos espacio en pantallas pequeñas */
+  .project-video {
+    height: 220px;
   }
 }
 
-/* --- FIX VISIBILIDAD DE IMÁGENES Y PARTÍCULAS --- */
-.particles {
-  z-index: 0 !important; /* Mantiene las partículas debajo del contenido */
-  pointer-events: none; /* Evita que bloqueen interacciones */
+/* Responsive para móviles pequeños (max 480px) */
+@media (max-width: 480px) {
+  .nav {
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .hero-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .service-card,
+  .project-info {
+    padding: 20px 15px;
+  }
+
+  .project-video {
+    height: 180px;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
 }
 
-.hero,
-.hero-content,
-.hero-photo,
-.projects-grid,
-.project-card {
-  position: relative;
-  z-index: 2;
+/* Landscape para móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 100px 20px 40px;
+  }
+
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
 }
 
-.hero-photo img,
-.project-card img {
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block;
+/* Fix para Safari */
+@supports (-webkit-appearance: none) {
+  .project-video video {
+    -webkit-transform: scale(1);
+  }
+  
+  .project-card:hover .project-video video,
+  .project-card:hover video {
+    -webkit-transform: scale(1.05);
+  }
 }
-
-.form-message {
-  font-size: 0.95rem;
-  text-align: center;
-  color: #ffffff;
-  opacity: 0.95;
-}
-.form-message.success {
-  color: #b0ff9c;
-} /* mensaje éxito */
-.form-message.error {
-  color: #ff9c9c;
-} /* mensaje error */

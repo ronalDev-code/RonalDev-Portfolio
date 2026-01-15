@@ -1,3 +1,8 @@
+// ========================================
+// SCRIPT.JS - PORTAFOLIO RONALDEV
+// Versión limpia sin console.log
+// ========================================
+
 // Crear partículas
 function createParticles() {
   const particles = document.querySelector(".particles");
@@ -18,7 +23,6 @@ function initMobileMenu() {
   const navLinks = document.querySelector(".nav-links");
   let isMenuOpen = false;
 
-  // Toggle del menú
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     isMenuOpen = !isMenuOpen;
@@ -32,7 +36,6 @@ function initMobileMenu() {
     }
   });
 
-  // Cerrar menú al hacer click en enlaces
   const navLinksItems = navLinks.querySelectorAll("a");
   navLinksItems.forEach((link) => {
     link.addEventListener("click", () => {
@@ -44,7 +47,6 @@ function initMobileMenu() {
     });
   });
 
-  // Cerrar menú al hacer click fuera
   document.addEventListener("click", (e) => {
     if (!document.querySelector(".nav").contains(e.target) && isMenuOpen) {
       navLinks.classList.remove("show");
@@ -53,7 +55,6 @@ function initMobileMenu() {
     }
   });
 
-  // Cerrar menú al cambiar tamaño de pantalla
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
       navLinks.classList.remove("show");
@@ -116,11 +117,65 @@ function updateHeaderOnScroll() {
   }
 }
 
-// Formulario
+// Optimización de videos
+function initVideoOptimization() {
+  const videos = document.querySelectorAll(".project-video video");
+  
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      
+      if (entry.isIntersecting) {
+        video.play().catch(() => {
+          // Silenciar errores de autoplay
+        });
+      } else {
+        video.pause();
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  videos.forEach(video => {
+    videoObserver.observe(video);
+    video.setAttribute('playsinline', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('preload', 'metadata');
+  });
+}
+
+// Lazy loading de videos
+function initVideoLazyLoad() {
+  const videos = document.querySelectorAll(".project-video video");
+  
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const video = entry.target;
+        const source = video.querySelector('source');
+        
+        if (source && !video.src) {
+          video.src = source.getAttribute('src');
+          video.load();
+        }
+        
+        videoObserver.unobserve(video);
+      }
+    });
+  }, {
+    rootMargin: '50px'
+  });
+
+  videos.forEach(video => {
+    videoObserver.observe(video);
+  });
+}
+
+// Formulario de contacto
 function initContactForm() {
-  const form =
-    document.getElementById("contact-form") ||
-    document.querySelector(".contact-form");
+  const form = document.querySelector(".contact-form");
   if (!form) return;
 
   const button = form.querySelector('button[type="submit"]');
@@ -129,19 +184,13 @@ function initContactForm() {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // ===========================
-    // REEMPLAZA con tu endpoint
-    // ===========================
     const FORM_ENDPOINT = "https://formspree.io/f/xyznpaqq";
-    // ===========================
 
-    // Simple protección: si el honeypot tiene algo, abortamos
     const gotcha = form.querySelector('input[name="_gotcha"]');
-    if (gotcha && gotcha.value) return; // bot detected
+    if (gotcha && gotcha.value) return;
 
     const formData = new FormData(form);
 
-    // UI - desactivar botón y mostrar envío
     const originalText = button.textContent;
     button.disabled = true;
     button.textContent = "Enviando...";
@@ -155,7 +204,6 @@ function initContactForm() {
     })
       .then((response) => {
         if (response.ok) {
-          // éxito
           msg.textContent = "¡Mensaje enviado! Te responderé pronto.";
           msg.classList.remove("error");
           msg.classList.add("success");
@@ -164,27 +212,23 @@ function initContactForm() {
           button.style.background = "linear-gradient(45deg, #00ff00, #008000)";
           form.reset();
         } else {
-          // intenta leer JSON con error
           return response.json().then((data) => {
             throw new Error(data.error || "Error al enviar el formulario");
           });
         }
       })
-      .catch((error) => {
-        console.error("Formspree error:", error);
+      .catch(() => {
         msg.textContent = "Error al enviar. Intenta nuevamente más tarde.";
         msg.classList.remove("success");
         msg.classList.add("error");
         button.textContent = "Error ❌";
       })
       .finally(() => {
-        // Restaurar estado del botón después de un pequeño delay
         setTimeout(() => {
           button.disabled = false;
           button.textContent = originalText;
           button.style.background = "linear-gradient(45deg, #00ffff, #ff00ff)";
 
-          // limpiar mensaje después de 5s
           setTimeout(() => {
             msg.textContent = "";
             msg.classList.remove("success", "error");
@@ -196,7 +240,6 @@ function initContactForm() {
 
 // Animaciones adicionales
 function initAnimations() {
-  // Animación de escritura para el título
   const heroTitle = document.querySelector(".hero h1");
   if (heroTitle) {
     const text = heroTitle.textContent;
@@ -214,7 +257,6 @@ function initAnimations() {
     }, 500);
   }
 
-  // Contador animado para proyectos
   const observerOptions = {
     threshold: 0.5,
     rootMargin: "0px 0px -100px 0px",
@@ -236,7 +278,6 @@ function initAnimations() {
 
 // Optimización de rendimiento
 function optimizePerformance() {
-  // Lazy loading para imágenes
   const images = document.querySelectorAll("img");
   const imageObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -258,7 +299,6 @@ function optimizePerformance() {
     imageObserver.observe(img);
   });
 
-  // Throttle para eventos de scroll
   let ticking = false;
   const throttledScroll = () => {
     if (!ticking) {
@@ -272,13 +312,39 @@ function optimizePerformance() {
     }
   };
 
-  window.removeEventListener("scroll", () => {
-    revealOnScroll();
-    parallaxEffect();
-    updateHeaderOnScroll();
-  });
-
   window.addEventListener("scroll", throttledScroll);
+}
+
+// Detectar modo ahorro de datos
+function checkDataSaverMode() {
+  if ('connection' in navigator) {
+    const connection = navigator.connection;
+    
+    if (connection.saveData) {
+      document.querySelectorAll(".project-video video").forEach(video => {
+        video.pause();
+        video.removeAttribute('autoplay');
+      });
+      
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+// Ajustar calidad de video según conexión
+function adjustVideoQuality() {
+  if ('connection' in navigator) {
+    const connection = navigator.connection;
+    const effectiveType = connection.effectiveType;
+    
+    if (effectiveType === '2g' || effectiveType === 'slow-2g') {
+      document.querySelectorAll(".project-video video").forEach(video => {
+        video.style.display = 'none';
+      });
+    }
+  }
 }
 
 // Inicialización completa
@@ -290,24 +356,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initAnimations();
   optimizePerformance();
   revealOnScroll();
+  initVideoOptimization();
+  initVideoLazyLoad();
+  checkDataSaverMode();
+  adjustVideoQuality();
 
-  // Precargar imágenes críticas
-  const criticalImages = [
-    "images/foto_perfil.jpg",
-    "images/proyecto-cevicheria.jpg",
-  ];
-
-  criticalImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
+  // Precargar imagen crítica
+  const img = new Image();
+  img.src = "images/foto_perfil.jpg";
 });
-
-// Debug para desarrollo
-if (
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1"
-) {
-  console.log("🚀 RonalDev Portfolio cargado correctamente");
-  console.log("📱 Responsive:", window.innerWidth <= 768 ? "Móvil" : "Desktop");
-}
